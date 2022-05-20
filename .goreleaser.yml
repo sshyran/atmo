@@ -1,10 +1,13 @@
+env:
+  - CGO_ENABLED=1
 builds:
   - <<: &build_defaults
-      id: atmo
+      id: atmo-linux-amd64
       main: .
       binary: atmo
       env:
-        - CGO_ENABLED=1
+        - CC=x86_64-linux-gnu-gcc
+        - CXX=x86_64-linux-gnu-g++
       goos:
         - linux
       goarch:
@@ -12,9 +15,66 @@ builds:
       ldflags:
         - -s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{.Date}}
   - <<: *build_defaults
-    id: atmo-proxy
+    id: atmo-linux-arm64
+    env:
+      - CC=aarch64-linux-gnu-gcc
+      - CXX=aarch64-linux-gnu-g++
+    goarch:
+      - arm64
+  - <<: *build_defaults
+    id: atmo-darwin-amd64
+    env:
+      - CC=o64-clang
+      - CXX=o64-clang++
+    goos:
+      - darwin
+    goarch:
+      - amd64
+  - <<: *build_defaults
+    id: atmo-darwin-arm64
+    env:
+      - CC=oa64-clang
+      - CXX=oa64-clang++
+    goos:
+      - darwin
+    goarch:
+      - arm64
+
+  - <<: *build_defaults
+    id: atmo-proxy-linux-amd64
     binary: atmo-proxy
     tags: proxy
+  - <<: *build_defaults
+    id: atmo-proxy-linux-arm64
+    binary: atmo-proxy
+    tags: proxy
+    env:
+      - CC=aarch64-linux-gnu-gcc
+      - CXX=aarch64-linux-gnu-g++
+    goarch:
+      - arm64
+  - <<: *build_defaults
+    id: atmo-proxy-darwin-amd64
+    binary: atmo-proxy
+    tags: proxy
+    env:
+      - CC=o64-clang
+      - CXX=o64-clang++
+    goos:
+      - darwin
+    goarch:
+      - amd64
+  - <<: *build_defaults
+    id: atmo-proxy-darwin-arm64
+    binary: atmo-proxy
+    tags: proxy
+    env:
+      - CC=oa64-clang
+      - CXX=oa64-clang++
+    goos:
+      - darwin
+    goarch:
+      - arm64
 
 changelog:
   skip: true
@@ -23,11 +83,17 @@ checksum:
   name_template: 'checksums.txt'
 
 archives:
-  - id: atmo-archive
+  - id: atmo
     name_template: 'atmo-v{{ .Version }}-{{ .Os }}-{{ .Arch }}'
     builds:
-      - atmo
-  - id: atmo-proxy-archive
+      - atmo-linux-amd64
+      - atmo-linux-arm64
+      - atmo-darwin-amd64
+      - atmo-darwin-arm64
+  - id: atmo-proxy
     name_template: 'atmo-proxy-v{{ .Version }}-{{ .Os }}-{{ .Arch }}'
     builds:
-      - atmo-proxy
+      - atmo-proxy-linux-amd64
+      - atmo-proxy-linux-arm64
+      - atmo-proxy-darwin-amd64
+      - atmo-proxy-darwin-arm64
