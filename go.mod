@@ -10,7 +10,7 @@ require (
 	github.com/sethvargo/go-envconfig v0.7.0
 	github.com/spf13/cobra v1.4.0
 	github.com/suborbital/grav v0.5.1
-	github.com/suborbital/reactr v0.15.1
+	github.com/suborbital/reactr v0.15.2
 	github.com/suborbital/vektor v0.6.0
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.32.0
 	go.opentelemetry.io/otel v1.7.0
