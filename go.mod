@@ -9,7 +9,7 @@ require (
 	github.com/pkg/errors v0.9.1
 	github.com/sethvargo/go-envconfig v0.7.0
 	github.com/spf13/cobra v1.4.0
-	github.com/suborbital/grav v0.5.1
+	github.com/suborbital/grav v0.5.2
 	github.com/suborbital/reactr v0.15.1
 	github.com/suborbital/vektor v0.6.0
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.32.0
@@ -64,7 +64,7 @@ require (
 	go.opentelemetry.io/otel/exporters/otlp/internal/retry v1.7.0 // indirect
 	go.opentelemetry.io/otel/metric v0.30.0 // indirect
 	go.opentelemetry.io/proto/otlp v0.16.0 // indirect
-	golang.org/x/crypto v0.0.0-20220516162934-403b01795ae8 // indirect
+	golang.org/x/crypto v0.0.0-20220525230936-793ad666bf5e // indirect
 	golang.org/x/net v0.0.0-20220225172249-27dd8689420f // indirect
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c // indirect
 	golang.org/x/sys v0.0.0-20220310020820-b874c991c1a5 // indirect
